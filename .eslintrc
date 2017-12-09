@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "rules": {
+    "no-underscore-dangle": 0,
+    "max-len": [2, 110, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
+    "no-lonely-if" : 2,
+    "curly": 2,
+    "no-console": 2,
+    "func-names": 0,
+    "consistent-return": 0,
+    "comma-dangle": 0
+  }
+}
