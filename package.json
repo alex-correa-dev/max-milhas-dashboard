@@ -1,0 +1,30 @@
+{
+  "name": "max-milhas-dashboard",
+  "version": "0.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "bower install && gulp test",
+    "production": "npm install && bower install --only=production",
+    "build": "npm run production && gulp build"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Alex Roberto Corrêa",
+  "homepage": "https://github.com/AlexRobertoCorrea/max-milhas-dashboard",
+  "dependencies": {
+    "body-parser": "1.17.0",
+    "compression": "1.6.x",
+    "cors": "2.8.4",
+    "express": "4.14.0",
+    "winston": "2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "4.13.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.4.0"
+  }
+}
