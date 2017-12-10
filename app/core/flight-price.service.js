@@ -4,11 +4,11 @@
     const maxMilhasUrl = maxMilhasConfig.maxMilhasApi.url;
     const maxMilhasToken = maxMilhasConfig.maxMilhasApi.token;
 
-    function searchFlightsData(response) {
+    function responseData(response) {
       return response.data;
     }
 
-    function searchFlightsFailed(error) {
+    function responseFailed(error) {
       const messageError = 'Failed to search flights data';
       return exception.catcher(messageError)(error);
     }
@@ -26,12 +26,37 @@
 
       return $http
         .post(url, data, headers)
-        .then(searchFlightsData)
-        .catch(searchFlightsFailed);
+        .then(responseData)
+        .catch(responseFailed);
+    }
+
+    function searchFlightsAirlines(searchId, airlineParam) {
+      const params = {};
+
+      if (airlineParam) {
+        params.airline = airlineParam;
+      }
+
+      const url = `${maxMilhasUrl}/${searchId}/flights`;
+
+      const applicationJson = 'application/json';
+      const config = {
+        params,
+        headers: {
+          Authorization: maxMilhasToken,
+          Accept: applicationJson
+        }
+      };
+
+      return $http
+        .get(url, config)
+        .then(responseData)
+        .catch(responseFailed);
     }
 
     const service = {
-      searchFlights
+      searchFlights,
+      searchFlightsAirlines
     };
 
     return service;
