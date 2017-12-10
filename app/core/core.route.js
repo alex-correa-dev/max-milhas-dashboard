@@ -4,8 +4,6 @@
     const otherwise = '/';
     routerHelper.configureStates([], otherwise);
   }
-  
-  angular
-  .module('max-milhas-dashboard.core')
-  .run(appRun);
+
+  angular.module('max-milhas-dashboard.core').run(appRun);
 })();
