@@ -37,6 +37,6 @@
     "expect": 1,
     "fdescribe": 1,
     "fit": 1,
-    "assert": 1
+    "mockData": 1
   }
 }
