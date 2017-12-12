@@ -142,8 +142,20 @@ const mockData = (function() {
     };
   }
 
+  function getMockAirportsFlightsData() {
+    return {
+      time: 1,
+      airports: {
+        NYC: ['Nova Iorque - Todos', 'NYC', 'US'],
+        BHZ: ['Belo Horizonte - Todos', 'BHZ', 'BR'],
+        RIO: ['Rio de Janeiro - Todos', 'RIO', 'BR']
+      }
+    };
+  }
+
   return {
     getMockFlightsData,
-    getMockFlightsAirlinesData
+    getMockFlightsAirlinesData,
+    getMockAirportsFlightsData
   };
 })();
