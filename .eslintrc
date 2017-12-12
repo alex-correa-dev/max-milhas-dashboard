@@ -37,6 +37,7 @@
     "expect": 1,
     "fdescribe": 1,
     "fit": 1,
-    "mockData": 1
+    "mockData": 1,
+    "spyOn": 1
   }
 }
