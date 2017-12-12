@@ -6,7 +6,7 @@ describe('flightPriceService', () => {
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXhtaWxoYXMuY29tLmJyIiw' +
     'iaWF0IjoxNTA5MTIwMTAxLCJleHAiOjE1MTA0MTYxMDEsImF1ZCI6InRlc3RlLWZyb250ZW5kIiwic3ViIjoidGVzdGUt' +
     'ZnJvbnRlbmQiLCJlbnYiOiJobWcifQ.nM6wMem6dxF0CcDlig5iA9az5ZfmbXDjq1e4ypZXwjU';
-  const success = 200;
+  const statusOk = 200;
   const unprocessableEntity = 422;
   const notFound = 404;
 
@@ -58,7 +58,7 @@ describe('flightPriceService', () => {
 
         $httpBackend
           .expectPOST(url, data, headers)
-          .respond(success, flightsDataMock);
+          .respond(statusOk, flightsDataMock);
         const $httpFlush = $httpBackend.flush;
 
         let result;
@@ -90,7 +90,7 @@ describe('flightPriceService', () => {
 
         $httpBackend
           .expectGET(url, headers)
-          .respond(success, flightsAirlinesDataMock);
+          .respond(statusOk, flightsAirlinesDataMock);
         const $httpFlush = $httpBackend.flush;
 
         let result;
