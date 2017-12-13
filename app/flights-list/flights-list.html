@@ -1,0 +1,50 @@
+<section>
+  <md-table-container>
+    <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+      <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+      <tr md-row>
+        <th md-column md-numeric>Cia Aérea</th>
+        <th md-column md-numeric>Partida</th>
+        <th md-column md-numeric>Duração</th>
+        <th md-column md-numeric>Chegada</th>
+      </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row md-select-id="name" md-auto-select ng-repeat="flightAirline in vm.flightsAirlinesList">
+          <td md-cell>
+            <div>{{flightAirline.airline}}</div>
+            <div>{{flightAirline.flightNumber}}</div>
+          </td>
+          <td md-cell>
+            <div>{{flightAirline.departureDate}}</div>
+            <div>{{flightAirline.from}}</div>
+          </td>
+          <td md-cell>{{flightAirline.duration}}</td>
+          <td md-cell>
+            <div>{{flightAirline.arrivalDate}}</div>
+            <div>{{flightAirline.to}}</div>
+          </td>
+          <td md-cell>
+            <div layout="row" layout-align="space-around center">
+              <div>
+                <md-menu-bar>
+                  <md-menu>
+                    <md-button class="md-grid-item-content" ng-click="$mdMenu.open()">
+                      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+                        add
+                      </md-icon>
+                    </md-button>
+                    <md-menu-content>
+                      <div>{{flightAirline.details}}</div>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-bar>
+              </div>
+              <div>Detalhes do vôo</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+</section>
