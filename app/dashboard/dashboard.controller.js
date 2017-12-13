@@ -24,18 +24,12 @@
     }
 
     function getDetails(data) {
-      const boardRate = data.pricing.airline.adult.fees.find(
-        fee => fee.type === 'BOARDING_TAX'
-      ).value;
+      const boardRate = data.pricing.airline.adult.fees.find(fee => fee.type === 'BOARDING_TAX').value;
       const convenienceRate = data.pricing.miles.offer.price || 0.0;
       return `TEMPO DE DURAÇÃO TOTAL: ${getTimeFormated(data.duration)} | \
       TAXA DE EMBARQUE (POR ADULTO): R$ ${boardRate} | \
-      TAXA DE CONVENIÊNCIA (POR ADULTO): R$ ${Math.round(
-        convenienceRate * 100
-      ) / 100} | \
-      MILHAS DO VOO (POR ADULTO): ${Math.round(
-        data.pricing.miles.fareTotal * 100
-      ) / 100}`;
+      TAXA DE CONVENIÊNCIA (POR ADULTO): R$ ${Math.round(convenienceRate * 100) / 100} | \
+      MILHAS DO VOO (POR ADULTO): ${Math.round(data.pricing.miles.fareTotal * 100) / 100}`;
     }
 
     function convertMinutesToHours(duration) {
@@ -71,36 +65,27 @@
 
       return flightPriceService
         .searchFlights(data, time)
-        .then(flights => {
+        .then((flights) => {
           const searchId = flights.id;
 
-          const enabledAirlines = flights.airlines.filter(
-            airline => airline.status.enable
-          );
+          const enabledAirlines = flights.airlines.filter(airline => airline.status.enable);
           const searchFlightsAirlinesPromises = enabledAirlines.map(airline =>
-            flightPriceService.searchFlightsAirlines(searchId, airline.label)
-          );
+            flightPriceService.searchFlightsAirlines(searchId, airline.label));
 
           return $q
             .all(searchFlightsAirlinesPromises)
-            .then(result => {
-              result.forEach(flightsAirline => {
+            .then((result) => {
+              result.forEach((flightsAirline) => {
                 // const bestPrice = flightsAirline.bestPrice;
 
-                flightsAirline.inbound.forEach(inboundData => {
+                flightsAirline.inbound.forEach((inboundData) => {
                   const inbound = {};
                   inbound.airline = capitalizeFirstLetter(inboundData.airline);
                   inbound.flightNumber = inboundData.flightNumber;
-                  inbound.departureDate = getTimeFormated(
-                    inboundData.departureDate
-                  );
+                  inbound.departureDate = getTimeFormated(inboundData.departureDate);
                   inbound.from = getAirportName(inboundData.from);
-                  inbound.duration = convertMinutesToHours(
-                    inboundData.duration
-                  );
-                  inbound.arrivalDate = getTimeFormated(
-                    inboundData.arrivalDate
-                  );
+                  inbound.duration = convertMinutesToHours(inboundData.duration);
+                  inbound.arrivalDate = getTimeFormated(inboundData.arrivalDate);
                   inbound.to = getAirportName(inboundData.to);
                   inbound.details = getDetails(inboundData);
 
@@ -110,13 +95,11 @@
 
               return vm.flightsAirlinesList;
             })
-            .catch(errFindingFlightsAirlines => {
-              logger.error(
-                `Error finding flights by airlines: ${errFindingFlightsAirlines}`
-              );
+            .catch((errFindingFlightsAirlines) => {
+              logger.error(`Error finding flights by airlines: ${errFindingFlightsAirlines}`);
             });
         })
-        .catch(errFindingFlights => {
+        .catch((errFindingFlights) => {
           logger.error(`Error finding flights: ${errFindingFlights}`);
         });
     };

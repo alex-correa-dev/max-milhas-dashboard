@@ -8,7 +8,7 @@
 
     function init() {
       return airportsService.getAirportsList().then((airports) => {
-        vm.airportsList = Object.keys(airports).map(airportFlightId => {
+        vm.airportsList = Object.keys(airports).map((airportFlightId) => {
           const nameAirport = 0;
           return airports[airportFlightId][nameAirport];
         });

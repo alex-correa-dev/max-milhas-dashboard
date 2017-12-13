@@ -40,7 +40,7 @@ describe('airportsService', () => {
             result = airportsList;
           })
           .finally(() => expect(JSON.stringify(result))
-          .toEqual(JSON.stringify(airportsFlightsDataMock.airports)));
+            .toEqual(JSON.stringify(airportsFlightsDataMock.airports)));
         $httpFlush();
         $timeout.flush();
       });

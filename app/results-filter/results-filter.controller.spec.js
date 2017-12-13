@@ -6,15 +6,13 @@ describe('resultsFilterCtrl', () => {
   beforeEach(module('max-milhas-dashboard.core'));
   beforeEach(module('max-milhas-dashboard.results-filter'));
 
-  beforeEach(
-    inject((_$controller_, _$rootScope_, _$mdBottomSheet_) => {
-      $mdBottomSheet = _$mdBottomSheet_;
-      $rootScope = _$rootScope_;
-      $rootScope.$apply();
+  beforeEach(inject((_$controller_, _$rootScope_, _$mdBottomSheet_) => {
+    $mdBottomSheet = _$mdBottomSheet_;
+    $rootScope = _$rootScope_;
+    $rootScope.$apply();
 
-      controller = _$controller_('resultsFilterCtrl', { $mdBottomSheet });
-    })
-  );
+    controller = _$controller_('resultsFilterCtrl', { $mdBottomSheet });
+  }));
 
   describe('resultsFilterCtrl controller: unit tests', () => {
     it('controller should be created successfully', () => {
