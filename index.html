@@ -8,7 +8,8 @@
   <base href="/">
 
   <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css">
   <style>
     /* This helps the ng-show/ng-hide animations start at the right place. */
     /* Since Angular has this but needs to load, this gives us the class early. */
@@ -25,6 +26,7 @@
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
   <script src="/bower_components/angular-aria/angular-aria.js"></script>
   <script src="/bower_components/angular-messages/angular-messages.js"></script>
+  <script src="/bower_components/angular-material-data-table/dist/md-data-table.js"></script>
 
   <script src="/app/app.module.js"></script>
   <script src="/app/blocks/logger/logger.module.js"></script>
@@ -35,6 +37,7 @@
   <script src="/app/search-header/search-header.module.js"></script>
   <script src="/app/prices-alert/prices-alert.module.js"></script>
   <script src="/app/results-filter/results-filter.module.js"></script>
+  <script src="/app/flights-list/flights-list.module.js"></script>
 
   <script src="/app/blocks/logger/logger.js"></script>
   <script src="/app/blocks/router/router-helper.provider.js"></script>
@@ -55,5 +58,7 @@
   <script src="/app/results-filter/results-filter.controller.js"></script>
   <script src="/app/results-filter/results-filter.directive.js"></script>
   <script src="/app/results-filter/results-filter-list.controller.js"></script>
+  <script src="/app/flights-list/flights-list.directive.js"></script>
+  <script src="/app/flights-list/flights-list.controller.js"></script>
 </body>
 </html>
