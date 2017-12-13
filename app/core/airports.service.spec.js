@@ -32,11 +32,6 @@ describe('airportsService', () => {
           .expectGET(airportsFileRoute)
           .respond(statusOk, airportsFlightsDataMock);
         const $httpFlush = $httpBackend.flush;
-        const listAirportsExpected = [
-          'Nova Iorque - Todos',
-          'Belo Horizonte - Todos',
-          'Rio de Janeiro - Todos'
-        ];
 
         let result;
         airportsService
@@ -44,7 +39,8 @@ describe('airportsService', () => {
           .then((airportsList) => {
             result = airportsList;
           })
-          .finally(() => expect(JSON.stringify(result)).toEqual(JSON.stringify(listAirportsExpected)));
+          .finally(() => expect(JSON.stringify(result))
+          .toEqual(JSON.stringify(airportsFlightsDataMock.airports)));
         $httpFlush();
         $timeout.flush();
       });
