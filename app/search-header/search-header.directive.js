@@ -2,7 +2,9 @@
   function searchHeader() {
     const directive = {
       scope: {
-        minDate: '='
+        minDate: '=',
+        getFlightsAirlinesList: '=',
+        airports: '='
       },
       restrict: 'E',
       controller: 'searchHeaderCtrl',
