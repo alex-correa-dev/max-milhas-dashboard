@@ -1,0 +1,132 @@
+<section>
+  <div layout="row">
+    <div flex>
+      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+        menu
+      </md-icon>
+    </div>
+    <div flex>Teste Front</div>
+    <div layout="row" flex>
+      <div flex>
+        <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+          schedule
+        </md-icon>
+      </div>
+      <div flex>20:00</div>
+    </div>
+  </div>
+
+  <div layout="row">
+    <div flex>
+      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+        place
+      </md-icon>
+    </div>
+    <div flex>
+      CNF - FLN
+    </div>
+    <div flex>
+      <md-datepicker ng-model="vm.departureDate"
+                     md-placeholder="Data de ida"
+                     md-min-date="vm.minDate">
+      </md-datepicker>
+    </div>
+    <div flex>
+      <md-datepicker ng-model="vm.returnDate"
+                     md-placeholder="Data de ida"
+                     md-min-date="vm.minDate">
+      </md-datepicker>
+    </div>
+    <div flex>
+      <md-menu-bar>
+        <md-menu>
+          <md-button class="md-grid-item-content" ng-click="$mdMenu.open()">
+            <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+              group
+            </md-icon>
+          </md-button>
+          <md-menu-content>
+            <div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Adultos</label>
+                <md-select ng-model="vm.numberAdults">
+                  <md-option ng-repeat="number in vm.numbersList" value="{{number}}">
+                    {{number}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Crianças - 2 a 11 anos</label>
+                <md-select ng-model="vm.numberChildren">
+                  <md-option ng-repeat="number in vm.numbersList" value="{{number}}">
+                    {{number}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Bebês - 0 a 23 meses</label>
+                <md-select ng-model="vm.numberBabies">
+                  <md-option ng-repeat="number in vm.numbersList" value="{{number}}">
+                    {{number}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Classe</label>
+                <md-select ng-model="vm.numberBabies">
+                  <md-option ng-repeat="number in vm.classesList" value="{{number}}">
+                    {{number}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          </md-menu-content>
+        </md-menu>
+      </md-menu-bar>
+    </div>
+    <div flex>{{vm.numberPassagers || 0}}</div>
+  </div>
+
+  <div layout="row">
+    <div flex>
+      <md-autocomplete
+              md-selected-item="vm.departurePlace"
+              md-search-text="vm.searchDeparturePlace"
+              md-items="item in vm.querySearch(vm.searchDeparturePlace)"
+              md-item-text="item"
+              md-min-length="0"
+              placeholder="Selecione sua ida">
+        <md-item-template>
+          <span md-highlight-text="vm.searchDeparturePlace" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+      </md-autocomplete>
+    </div>
+    <div flex>
+      <md-autocomplete
+              md-selected-item="vm.returnPlace"
+              md-search-text="vm.searchReturnPlace"
+              md-items="item in vm.querySearch(vm.searchReturnPlace)"
+              md-item-text="item"
+              md-min-length="0"
+              placeholder="Selecione sua volta">
+        <md-item-template>
+          <span md-highlight-text="vm.searchReturnPlace" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+      </md-autocomplete>
+    </div>
+  </div>
+
+  <div layout="row" layout-align="center center">
+    <md-button class="md-raised md-primary" ng-click="vm.getFlightsAirlines()" ng-disabled="vm.loading">Buscar</md-button>
+  </div>
+
+  <div layout="row" layout-align="space-around" ng-show="vm.loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+</section>
