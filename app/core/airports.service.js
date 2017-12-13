@@ -4,12 +4,7 @@
     const route = maxMilhasConfig.airportsFile;
 
     function responseData(response) {
-      const airports = response.data.airports;
-
-      return Object.keys(airports).map(airportFlightId => {
-        const nameAirport = 0;
-        return airports[airportFlightId][nameAirport];
-      });
+      return response.data.airports;
     }
 
     function responseFailed(error) {
