@@ -3,6 +3,7 @@
     'ngSanitize',
     'ui.router',
     'ngMaterial',
+    'ngMessages',
     'md.data.table',
 
     'blocks.logger',
