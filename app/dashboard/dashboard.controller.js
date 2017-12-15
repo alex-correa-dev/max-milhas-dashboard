@@ -1,6 +1,6 @@
 (function() {
   /* @ngInject */
-  function Dashboard($q, flightPriceService, logger) {
+  function Dashboard($q, flightPriceService, logger, helpersService) {
     const vm = this;
     vm.minDate = new Date();
     vm.flightsAirlinesList = [];
@@ -9,24 +9,18 @@
       return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
-    function getTimeFormated(notFormatedDate) {
-      const date = new Date(notFormatedDate);
-      const hours =
-        date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-      const minutes =
-        date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-      return `${hours}:${minutes}`;
-    }
-
     function getAirportName(from) {
       const airportNamePosition = 0;
       return vm.airports[from][airportNamePosition];
     }
 
     function getDetails(data) {
-      const boardRate = data.pricing.airline.adult.fees.find(fee => fee.type === 'BOARDING_TAX').value;
+      const boardRate =
+        data.pricing.airline &&
+        data.pricing.airline.adult.fees.find(fee => fee.type === 'BOARDING_TAX')
+          .value;
       const convenienceRate = data.pricing.miles.offer.price || 0.0;
-      return `TEMPO DE DURAÇÃO TOTAL: ${getTimeFormated(data.duration)} | \
+      return `TEMPO DE DURAÇÃO TOTAL: ${helpersService.getTimeFormated(data.duration)} | \
       TAXA DE EMBARQUE (POR ADULTO): R$ ${boardRate} | \
       TAXA DE CONVENIÊNCIA (POR ADULTO): R$ ${Math.round(convenienceRate * 100) / 100} | \
       MILHAS DO VOO (POR ADULTO): ${Math.round(data.pricing.miles.fareTotal * 100) / 100}`;
@@ -40,72 +34,65 @@
       return `${hours}H${minutes}`;
     }
 
-    vm.getFlightsAirlinesList = function() {
-      const data = {
-        tripType: 'RT',
-        from: 'REC',
-        to: 'RIO',
-        outboundDate: '2017-12-22',
-        inboundDate: '2017-12-28',
-        cabin: 'EC',
-        adults: 2,
-        children: 1,
-        infants: 0
-      };
+    function searchFlightsAirlines(result) {
+      result.forEach((flightsAirline) => {
+        const bestPrice =
+          flightsAirline.bestPrice && flightsAirline.bestPrice.inbound;
 
-      const date = new Date();
-      const year = date.getFullYear();
-      const month =
-        date.getMonth() + 1 < 10
-          ? `0${date.getMonth() + 1}`
-          : date.getMonth() + 1;
-      const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+        flightsAirline.inbound.forEach((inboundData) => {
+          const inbound = {};
+          inbound.airline = capitalizeFirstLetter(inboundData.airline);
+          inbound.flightNumber = inboundData.flightNumber;
+          inbound.departureDate = helpersService.getTimeFormated(inboundData.departureDate);
+          inbound.from = getAirportName(inboundData.from);
+          inbound.duration = convertMinutesToHours(inboundData.duration);
+          inbound.arrivalDate = helpersService.getTimeFormated(inboundData.arrivalDate);
+          inbound.to = getAirportName(inboundData.to);
+          inbound.details = getDetails(inboundData);
+          inbound.price =
+            (inboundData.pricing.airline &&
+              inboundData.pricing.airline.saleTotal.toFixed(2)) ||
+            0.0;
+          inbound.bestPrice = inboundData.id === bestPrice && bestPrice;
+          inbound.economy =
+            inboundData.pricing.miles.saleTotal -
+            inboundData.pricing.airline.saleTotal;
 
-      const time = `${year}-${month}-${day}`;
+          vm.flightsAirlinesList.push(inbound);
+        });
+      });
+
+      return vm.flightsAirlinesList;
+    }
+
+    function searchFlightsResponse(flights) {
+      const searchId = flights.id;
+
+      const enabledAirlines = flights.airlines.filter(airline => airline.status.enable);
+      const searchFlightsAirlinesPromises = enabledAirlines.map(airline =>
+        flightPriceService.searchFlightsAirlines(searchId, airline.label));
+
+      return $q
+        .all(searchFlightsAirlinesPromises)
+        .then(searchFlightsAirlines)
+        .catch((errFindingFlightsAirlines) => {
+          logger.error(`Error finding flights by airlines: ${errFindingFlightsAirlines}`);
+        });
+    }
+
+    vm.getFlightsAirlinesList = function(data) {
+      const time = helpersService.getFormatedDate(new Date());
 
       return flightPriceService
         .searchFlights(data, time)
-        .then((flights) => {
-          const searchId = flights.id;
-
-          const enabledAirlines = flights.airlines.filter(airline => airline.status.enable);
-          const searchFlightsAirlinesPromises = enabledAirlines.map(airline =>
-            flightPriceService.searchFlightsAirlines(searchId, airline.label));
-
-          return $q
-            .all(searchFlightsAirlinesPromises)
-            .then((result) => {
-              result.forEach((flightsAirline) => {
-                // const bestPrice = flightsAirline.bestPrice;
-
-                flightsAirline.inbound.forEach((inboundData) => {
-                  const inbound = {};
-                  inbound.airline = capitalizeFirstLetter(inboundData.airline);
-                  inbound.flightNumber = inboundData.flightNumber;
-                  inbound.departureDate = getTimeFormated(inboundData.departureDate);
-                  inbound.from = getAirportName(inboundData.from);
-                  inbound.duration = convertMinutesToHours(inboundData.duration);
-                  inbound.arrivalDate = getTimeFormated(inboundData.arrivalDate);
-                  inbound.to = getAirportName(inboundData.to);
-                  inbound.details = getDetails(inboundData);
-
-                  vm.flightsAirlinesList.push(inbound);
-                });
-              });
-
-              return vm.flightsAirlinesList;
-            })
-            .catch((errFindingFlightsAirlines) => {
-              logger.error(`Error finding flights by airlines: ${errFindingFlightsAirlines}`);
-            });
-        })
+        .then(searchFlightsResponse)
         .catch((errFindingFlights) => {
           logger.error(`Error finding flights: ${errFindingFlights}`);
         });
     };
   }
 
-  Dashboard.$inject = ['$q', 'flightPriceService', 'logger'];
+  Dashboard.$inject = ['$q', 'flightPriceService', 'logger', 'helpersService'];
 
   angular
     .module('max-milhas-dashboard.dashboard')
