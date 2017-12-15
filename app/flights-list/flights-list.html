@@ -43,6 +43,17 @@
               <div>Detalhes do vôo</div>
             </div>
           </td>
+          <td md-cell>
+            <div layout="column" layout-align="space-around center">
+              <!--TODO substituir strike por CSS-->
+              <div>{{flightAirline.airline}} <strike>{{flightAirline.economy | currency: 'R$'}}</strike></div>
+              <div>
+                <md-button>R$ {{flightAirline.price}}</md-button>
+              </div>
+              <div ng-if="flightAirline.bestPrice">Menor preço na companhia aérea</div>
+              <div ng-if="!flightAirline.bestPrice">Vôo exclusivo da MaxMilhas</div>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
