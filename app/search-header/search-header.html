@@ -1,4 +1,4 @@
-<section>
+<form name="vm.searchDataForm" novalidate ng-submit="vm.searchDataForm.$valid &&  vm.getFlightsAirlines(vm.searchDataForm)">
   <div layout="row">
     <div flex>
       <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
@@ -12,7 +12,7 @@
           schedule
         </md-icon>
       </div>
-      <div flex>20:00</div>
+      <div flex>{{vm.getLiveTime()}}</div>
     </div>
   </div>
 
@@ -23,19 +23,29 @@
       </md-icon>
     </div>
     <div flex>
-      CNF - FLN
+      {{vm.getAirportCode(vm.departurePlace)}} - {{vm.getAirportCode(vm.returnPlace)}}
     </div>
     <div flex>
       <md-datepicker ng-model="vm.departureDate"
                      md-placeholder="Data de ida"
-                     md-min-date="vm.minDate">
+                     md-min-date="vm.minDate"
+                     ng-required="true"
+                     name="departureDate">
       </md-datepicker>
+      <div ng-messages="vm.searchDataForm.departureDate.$error" ng-if="vm.searchDataForm.$submitted">
+        <div ng-message="required">Esse campo é obrigatório.</div>
+      </div>
     </div>
     <div flex>
       <md-datepicker ng-model="vm.returnDate"
-                     md-placeholder="Data de ida"
-                     md-min-date="vm.minDate">
+                     md-placeholder="Data de ida *"
+                     md-min-date="vm.minDate"
+                     ng-required="true"
+                     name="returnDate">
       </md-datepicker>
+      <div ng-messages="vm.searchDataForm.returnDate.$error" ng-if="vm.searchDataForm.$submitted">
+        <div ng-message="required">Esse campo é obrigatório.</div>
+      </div>
     </div>
     <div flex>
       <md-menu-bar>
@@ -50,8 +60,8 @@
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Adultos</label>
                 <md-select ng-model="vm.numberAdults">
-                  <md-option ng-repeat="number in vm.numbersList" value="{{number}}">
-                    {{number}}
+                  <md-option ng-repeat="numberAdultsSelected in vm.numbersList" value="{{numberAdultsSelected}}">
+                    {{numberAdultsSelected}}
                   </md-option>
                 </md-select>
               </md-input-container>
@@ -60,8 +70,8 @@
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Crianças - 2 a 11 anos</label>
                 <md-select ng-model="vm.numberChildren">
-                  <md-option ng-repeat="number in vm.numbersList" value="{{number}}">
-                    {{number}}
+                  <md-option ng-repeat="numberChildrenSelected in vm.numbersList" value="{{numberChildrenSelected}}">
+                    {{numberChildrenSelected}}
                   </md-option>
                 </md-select>
               </md-input-container>
@@ -69,9 +79,9 @@
             <div>
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Bebês - 0 a 23 meses</label>
-                <md-select ng-model="vm.numberBabies">
-                  <md-option ng-repeat="number in vm.numbersList" value="{{number}}">
-                    {{number}}
+                <md-select ng-model="vm.numberInfants">
+                  <md-option ng-repeat="numberInfantsSelected in vm.numbersList" value="{{numberInfantsSelected}}">
+                    {{numberInfantsSelected}}
                   </md-option>
                 </md-select>
               </md-input-container>
@@ -79,9 +89,11 @@
             <div>
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Classe</label>
-                <md-select ng-model="vm.numberBabies">
-                  <md-option ng-repeat="number in vm.classesList" value="{{number}}">
-                    {{number}}
+                <md-select ng-model="vm.class"
+                           ng-required="true"
+                           name="class">
+                  <md-option ng-repeat="class in vm.classesList" value="{{class}}">
+                    {{class}}
                   </md-option>
                 </md-select>
               </md-input-container>
@@ -89,8 +101,13 @@
           </md-menu-content>
         </md-menu>
       </md-menu-bar>
+      <div ng-messages="vm.searchDataForm.class.$error" ng-if="vm.searchDataForm.$submitted">
+        <div ng-message="required">O campo classe é obrigatório.</div>
+        <div ng-message="childrenError">A quantidade de crianças e bebês deve ser igual ou inferior ao número de adultos.</div>
+        <div ng-message="numberPeople">No número de adultos tem que ser maior que zero.</div>
+      </div>
     </div>
-    <div flex>{{vm.numberPassagers || 0}}</div>
+    <div flex>{{vm.numberPassagers()}}</div>
   </div>
 
   <div layout="row">
@@ -101,11 +118,17 @@
               md-items="item in vm.querySearch(vm.searchDeparturePlace)"
               md-item-text="item"
               md-min-length="0"
-              placeholder="Selecione sua ida">
+              placeholder="Selecione sua ida *"
+              ng-required="true"
+              md-input-name="departurePlace">
         <md-item-template>
           <span md-highlight-text="vm.searchDeparturePlace" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
       </md-autocomplete>
+      <div ng-messages="vm.searchDataForm.departurePlace.$error" ng-if="vm.searchDataForm.$submitted">
+        <div ng-message="required">Esse campo é obrigatório.</div>
+        <div ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
+      </div>
     </div>
     <div flex>
       <md-autocomplete
@@ -114,19 +137,25 @@
               md-items="item in vm.querySearch(vm.searchReturnPlace)"
               md-item-text="item"
               md-min-length="0"
-              placeholder="Selecione sua volta">
+              placeholder="Selecione sua volta *"
+              ng-required="true"
+              md-input-name="returnPlace">
         <md-item-template>
           <span md-highlight-text="vm.searchReturnPlace" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
       </md-autocomplete>
+      <div ng-messages="vm.searchDataForm.returnPlace.$error" ng-if="vm.searchDataForm.$submitted">
+        <div ng-message="required">Esse campo é obrigatório.</div>
+        <div ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
+      </div>
     </div>
   </div>
 
   <div layout="row" layout-align="center center">
-    <md-button class="md-raised md-primary" ng-click="vm.getFlightsAirlines()" ng-disabled="vm.loading">Buscar</md-button>
+    <md-button class="md-raised md-primary" ng-disabled="vm.loading" type="submit">Buscar</md-button>
   </div>
 
   <div layout="row" layout-align="space-around" ng-show="vm.loading">
     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
   </div>
-</section>
+</form>
