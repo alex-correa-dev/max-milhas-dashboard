@@ -56,48 +56,38 @@
             </md-icon>
           </md-button>
           <md-menu-content>
-            <div>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Adultos</label>
-                <md-select ng-model="vm.numberAdults">
-                  <md-option ng-repeat="numberAdultsSelected in vm.numbersList" value="{{numberAdultsSelected}}">
-                    {{numberAdultsSelected}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-            </div>
-            <div>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Crianças - 2 a 11 anos</label>
-                <md-select ng-model="vm.numberChildren">
-                  <md-option ng-repeat="numberChildrenSelected in vm.numbersList" value="{{numberChildrenSelected}}">
-                    {{numberChildrenSelected}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-            </div>
-            <div>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Bebês - 0 a 23 meses</label>
-                <md-select ng-model="vm.numberInfants">
-                  <md-option ng-repeat="numberInfantsSelected in vm.numbersList" value="{{numberInfantsSelected}}">
-                    {{numberInfantsSelected}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-            </div>
-            <div>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Classe</label>
-                <md-select ng-model="vm.class"
-                           ng-required="true"
-                           name="class">
-                  <md-option ng-repeat="class in vm.classesList" value="{{class}}">
-                    {{class}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-            </div>
+            <md-menu-item>
+              <md-menu>
+                <md-button ng-click="$mdMenu.open()">Adultos</md-button>
+                <md-menu-content>
+                  <md-menu-item ng-repeat="numberAdultsSelected in vm.numbersList">
+                    <md-button ng-click="vm.numberAdults = numberAdultsSelected">{{numberAdultsSelected}}</md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-menu>
+                <md-button ng-click="$mdMenu.open()">Crianças - 2 a 11 anos</md-button>
+                <md-menu-content>
+                  <md-menu-item ng-repeat="numberChildrenSelected in vm.numbersList">
+                    <md-button ng-click="vm.numberChildren = numberChildrenSelected">{{numberChildrenSelected}}</md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-menu>
+                <md-button ng-click="$mdMenu.open()">Bebês - 0 a 23 meses</md-button>
+                <md-menu-content>
+                  <md-menu-item ng-repeat="numberInfantsSelected in vm.numbersList">
+                    <md-button ng-click="vm.numberInfants = numberInfantsSelected">{{numberInfantsSelected}}</md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </md-menu-item>
           </md-menu-content>
         </md-menu>
       </md-menu-bar>
