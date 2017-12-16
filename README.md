@@ -42,7 +42,7 @@ que executa o linter e os testes automatizados. Como linter usamos o _Eslint_ co
 Para executar a aplicação, fazemos:
 
 ```
-npm start
+npm run dev
 ```
 
 ou via _Docker_:
