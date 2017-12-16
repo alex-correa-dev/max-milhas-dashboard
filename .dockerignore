@@ -3,3 +3,7 @@ node_modules/
 bower_components/
 report/
 .tmp/
+.dist/
+README.md
+karma.conf.js
+karma.config.js
