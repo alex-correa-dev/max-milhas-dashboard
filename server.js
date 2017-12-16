@@ -18,7 +18,7 @@ if (env === 'production') {
   app.use(express.static('dist'));
 } else {
   app.use('/', express.static(__dirname));
-  app.use('/*', express.static('./index.html'));
+  app.use('/*', express.static('./tmp/index.html'));
   app.set('views', '/');
 }
 
