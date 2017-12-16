@@ -14,13 +14,18 @@ module.exports = function(packages, config) {
       .pipe(packages.gulp.dest(`${config.tmpDest}/app`));
   });
 
-  packages.gulp.task('copydependenciesdev', () =>
+  packages.gulp.task('copydependenciesdev', () => {
     packages.gulp
       .src([
         'bower_components/**/*.{css,js,scss}',
         '!bower_components/**/*.min.{css,js}'
       ])
-      .pipe(packages.gulp.dest(`${config.tmpDest}/bower_components`)));
+      .pipe(packages.gulp.dest(`${config.tmpDest}/bower_components`));
+
+    return packages.gulp
+      .src('./bower_components/angular-ui-router/release/angular-ui-router.min.js')
+      .pipe(packages.gulp.dest(`${config.tmpDest}/bower_components/angular-ui-router/release`));
+  });
 
   packages.gulp.task('sassdev', () => {
     const sassOptions = {
@@ -59,6 +64,7 @@ module.exports = function(packages, config) {
       'clean',
       ['copydistdev', 'copydependenciesdev'],
       'sassdev',
-      ['start', 'watch'], cb
+      ['start', 'watch'],
+      cb
     ));
 };
