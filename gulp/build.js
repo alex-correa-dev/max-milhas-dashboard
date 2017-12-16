@@ -1,9 +1,14 @@
 /* Build tasks */
 module.exports = function(packages, config) {
-  packages.gulp.task('copydist', () =>
+  packages.gulp.task('copydist', () => {
     packages.gulp
+      .src('./bower_components/angular-ui-router/release/angular-ui-router.min.js')
+      .pipe(packages.gulp.dest(`${config.distDest}/bower_components/angular-ui-router/release`));
+
+    return packages.gulp
       .src('./app/**/*.html')
-      .pipe(packages.gulp.dest(`${config.distDest}/app`)));
+      .pipe(packages.gulp.dest(`${config.distDest}/app`));
+  });
 
   packages.gulp.task('babel', () =>
     packages.gulp
@@ -20,6 +25,11 @@ module.exports = function(packages, config) {
       .pipe(packages.htmlmin({
         collapseWhitespace: true
       }))
+      .pipe(packages.gulp.dest(`${config.distDest}/app`)));
+
+  packages.gulp.task('json', () =>
+    packages.gulp
+      .src('./app/**/*.json')
       .pipe(packages.gulp.dest(`${config.distDest}/app`)));
 
   packages.gulp.task('uglify', () =>
@@ -56,7 +66,13 @@ module.exports = function(packages, config) {
 
   packages.gulp.task('build', cb =>
     packages.runSequence(
-      'clean', 'useref', 'copydist', 'babel', ['htmlmin', 'uglify'],
-      'sass', 'cssmin', cb
+      'clean',
+      'useref',
+      'copydist',
+      'babel',
+      ['htmlmin', 'json', 'uglify'],
+      'sass',
+      'cssmin',
+      cb
     ));
 };
