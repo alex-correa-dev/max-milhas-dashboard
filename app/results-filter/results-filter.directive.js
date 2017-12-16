@@ -1,4 +1,5 @@
 (function() {
+  /* @ngInject */
   function resultsFilter() {
     const directive = {
       scope: {},

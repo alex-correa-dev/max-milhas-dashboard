@@ -1,4 +1,5 @@
 (function() {
+  /* @ngInject */
   function maxMilhasConfig() {
     return {
       maxMilhasApi: {

@@ -1,4 +1,5 @@
 (function() {
+  /* @ngInject */
   function flightsList() {
     const directive = {
       scope: {

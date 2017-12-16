@@ -1,4 +1,5 @@
 (function() {
+  /* @ngInject */
   function pricesAlert() {
     const directive = {
       scope: {},
