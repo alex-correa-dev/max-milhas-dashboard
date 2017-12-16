@@ -7,7 +7,7 @@
     "dev": "gulp serve",
     "test": "gulp test",
     "production": "npm install && ./node_modules/.bin/bower install --only=production",
-    "build": "npm run production && gulp build",
+    "build": "gulp build",
     "prettier": "prettier es6 --single-quote --write './app/**/*.js'"
   },
   "repository": {
@@ -16,25 +16,17 @@
   "author": "Alex Roberto Corrêa",
   "homepage": "https://github.com/AlexRobertoCorrea/max-milhas-dashboard",
   "dependencies": {
-    "body-parser": "1.17.0",
-    "bower": "^1.4.1",
-    "compression": "1.6.x",
-    "cors": "2.8.4",
-    "express": "4.14.0",
-    "winston": "2.4.0"
-  },
-  "devDependencies": {
     "babel-loader": "^5.0.0",
     "babel-plugin-angular-annotate": "^1.0.2",
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-runtime": "^5.8.34",
+    "body-parser": "1.17.0",
+    "bower": "^1.4.1",
+    "compression": "1.6.x",
+    "cors": "2.8.4",
     "connect-livereload": "^0.5.3",
-    "eslint": "4.13.0",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jsx-a11y": "6.0.2",
-    "eslint-plugin-react": "7.4.0",
+    "express": "4.14.0",
     "gulp": "~3.9.1",
     "gulp-autoprefixer": "~3.1.0",
     "gulp-babel": "^6.1.2",
@@ -50,15 +42,23 @@
     "gulp-uglify": "~1.5.1",
     "gulp-useref": "^3.1.2",
     "gulp-util": "^3.0.8",
+    "karma": "^0.13.17",
+    "winston": "2.4.0",
+    "run-sequence": "^1.1.5"
+  },
+  "devDependencies": {
+    "eslint": "4.13.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.4.0",
     "istanbul": "^0.4.1",
     "jasmine": "^2.4.1",
-    "karma": "^0.13.17",
     "karma-chrome-launcher": "^0.2.1",
     "karma-coverage": "^0.5.3",
     "karma-firefox-launcher": "1.0.1",
     "karma-jasmine": "~0.3.1",
     "karma-phantomjs-launcher": "1.0.4",
-    "prettier": "^1.7.0",
-    "run-sequence": "^1.1.5"
+    "prettier": "^1.7.0"
   }
 }
