@@ -13,14 +13,10 @@ app.use(compress());
 app.use(bodyParser());
 app.use(cors());
 
-if (env === 'production') {
-  app.set('views', '/dist');
-  app.use(express.static('dist'));
-} else {
-  app.use('/', express.static(__dirname));
-  app.use('/*', express.static('./tmp/index.html'));
-  app.set('views', '/');
-}
+const staticFolder = env === 'production' ? './.dist' : './.tmp';
+
+app.set('views', staticFolder);
+app.use(express.static(staticFolder));
 
 const server = http.createServer(app);
 
