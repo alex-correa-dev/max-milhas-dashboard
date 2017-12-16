@@ -39,10 +39,18 @@ npm test
 
 que executa o linter e os testes automatizados. Como linter usamos o _Eslint_ com auxílio do _Prettier_ e usamos a versão 6 do _EcmaScript_.
 
-Para executar a aplicação, fazemos:
+Para executar a aplicação no modo desenvolvimento, fazemos:
 
 ```
 npm run dev
+```
+
+Para executar a aplicação no modo produção, fazemos:
+
+```
+npm run build
+
+npm start
 ```
 
 ou via _Docker_:
@@ -53,7 +61,7 @@ docker build -t max-milhas-dashboard/max-milhas-dashboard .
 docker run -p 7070:7070 -d max-milhas-dashboard/max-milhas-dashboard
 ```
 
-No browser, executamos:
+Independente do modo escolhido, no browser executamos:
 
 ```
 localhost:7070
