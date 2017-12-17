@@ -1,21 +1,117 @@
-<section>
-  <div layout="row" layout-align="space-around center">
-    <div>
+<section id="_results-filter">
+  <div class="results-filter-short" layout="row" layout-align="space-around center">
+    <div flex>
       <md-button class="md-grid-item-content" ng-click="vm.showResultsFilterList()">
-        <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+        <md-icon class="icon-primary" style="color: #21ccaa">
           arrow_drop_down_circle
         </md-icon>
       </md-button>
     </div>
-    <div>FILTRAR VÔOS</div>
+    <div class="highlight-text head-texts" flex>FILTRAR VÔOS</div>
 
-    <div>
+    <div flex>
       <md-button class="md-grid-item-content">
-        <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+        <md-icon class="icon-primary" style="color: #21ccaa">
           visibility
         </md-icon>
       </md-button>
     </div>
-    <div>MILHAS DO VÔO</div>
+    <div class="highlight-text head-texts" flex>MILHAS DO VÔO</div>
+  </div>
+
+  <div layout="column" layout-align="space-around center" class="results-filter-large">
+    <div class="headline -bold results-filter-headline"  layout-align="center center" flex>
+      <div>
+        Filtre seus resultados por
+      </div>
+    </div>
+
+    <div class="text-large -bold elements" flex>
+      Companhia aérea
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        AZUL (50 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        AVIANÇA (0 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        GOL (7 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        LATAM (7 VÔOS)
+      </md-checkbox>
+    </div>
+
+    <div class="text-large -bold elements" flex>
+      Horário de partida
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        MANHÃ - 06:00 ÀS 11:59 (18 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        TARDE - 12:00 ÀS 17:59 (32 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        NOITE - 18:00 ÀS 23:59 (23 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        MADRUGADA - 00:00 ÀS 05:59 (1 VÔO)
+      </md-checkbox>
+    </div>
+
+    <div class="text-large -bold elements" flex>
+      Aeroportos
+    </div>
+    <div class="text-large -bold elements" flex>
+      Partida
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        CFN (32 VÔOS)
+      </md-checkbox>
+    </div>
+
+    <div class="text-large -bold elements" flex>
+      Chegada
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        GIG (8 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        SDU (6 VÔOS)
+      </md-checkbox>
+    </div>
+
+    <div class="text-large -bold elements" flex>
+      Aeroportos
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        GIG (8 VÔOS)
+      </md-checkbox>
+    </div>
+    <div flex>
+      <md-checkbox class="results-filter-checkbox text-large elements">
+        SDU (6 VÔOS)
+      </md-checkbox>
+    </div>
   </div>
 </section>
