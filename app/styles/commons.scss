@@ -22,8 +22,14 @@ $borderHeaderColor: rgba(117, 117, 117, 0.87);
   background-color: $borderHeaderColor;
   color : #ffffff;
   font-size: 14px;
+  height: 32px;
 }
 
 .-bold {
   font-weight: bold;
+}
+
+.text-large {
+  font-size: 14px;
+  color: $textDefaultColor;
 }
