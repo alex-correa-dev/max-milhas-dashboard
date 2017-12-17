@@ -41,6 +41,8 @@
 
         flightsAirline.inbound.forEach((inboundData) => {
           const inbound = {};
+          const milesSaleTotal = inboundData.pricing.miles && inboundData.pricing.miles.saleTotal || 0;
+          const airlineSaleTotal = inboundData.pricing.airline && inboundData.pricing.airline.saleTotal || 0;
           inbound.airline = capitalizeFirstLetter(inboundData.airline);
           inbound.flightNumber = inboundData.flightNumber;
           inbound.departureDate = helpersService.getTimeFormated(inboundData.departureDate);
@@ -49,14 +51,9 @@
           inbound.arrivalDate = helpersService.getTimeFormated(inboundData.arrivalDate);
           inbound.to = getAirportName(inboundData.to);
           inbound.details = getDetails(inboundData);
-          inbound.price =
-            (inboundData.pricing.airline &&
-              inboundData.pricing.airline.saleTotal.toFixed(2)) ||
-            0.0;
+          inbound.price = (airlineSaleTotal && airlineSaleTotal.toFixed(2)) || 0.0;
           inbound.bestPrice = inboundData.id === bestPrice && bestPrice;
-          inbound.economy =
-            inboundData.pricing.miles.saleTotal -
-            inboundData.pricing.airline.saleTotal;
+          inbound.economy = milesSaleTotal - airlineSaleTotal;
 
           vm.flightsAirlinesList.push(inbound);
         });
