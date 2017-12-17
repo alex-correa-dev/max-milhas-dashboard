@@ -1,0 +1,10 @@
+<div layout="column" layout-align="space-around center">
+  <div>
+    <span class="text-large">{{vm.flightAirline.airline}}</span> <span class="text-large -bold -line-through">{{vm.flightAirline.economy | currency: 'R$'}}</span>
+  </div>
+  <div class="price-button">
+    <md-button class="primary">R$ {{vm.flightAirline.price}}</md-button>
+  </div>
+  <div class="text-price-description" ng-if="vm.flightAirline.bestPrice">Menor preço na companhia aérea</div>
+  <div class="text-price-description" ng-if="!vm.flightAirline.bestPrice">Vôo exclusivo da MaxMilhas</div>
+</div>
