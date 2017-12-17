@@ -1,104 +1,244 @@
-<form name="vm.searchDataForm" novalidate ng-submit="vm.searchDataForm.$valid &&  vm.getFlightsAirlines(vm.searchDataForm)">
+<form name="vm.searchDataForm" novalidate ng-submit="vm.searchDataForm.$valid &&  vm.getFlightsAirlines(vm.searchDataForm)" id="_search_header">
   <div layout="row">
-    <div flex>
-      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+    <div flex flex-gt-xs="5">
+      <md-icon class="icon-primary" style="color: #21ccaa">
         menu
       </md-icon>
     </div>
-    <div flex>Teste Front</div>
-    <div layout="row" flex>
+
+    <div class="highlight-text" flex flex-gt-xs="40">Teste Front</div>
+
+    <div layout="row" layout-align="center center" flex class="schedule-card">
       <div flex>
-        <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+        <md-icon class=".-md-icon">
           schedule
         </md-icon>
       </div>
       <div flex>{{vm.getLiveTime()}}</div>
     </div>
+
+    <div layout="row" flex class="menu-cards">
+      <div layout="row" layout-align="start center" flex>
+        <div flex>
+          <md-icon class="icon-primary -md-icon group-button">
+            monetization_on
+          </md-icon>
+        </div>
+        <div class="text-large" flex>Venda suas milhas</div>
+      </div>
+      <div layout="row" layout-align="start center" flex>
+        <div flex>
+          <md-icon class="icon-primary -md-icon group-button">
+            help_outline
+          </md-icon>
+        </div>
+        <div class="text-large" flex>Tire suas dúvidas</div>
+      </div>
+      <div layout="row" layout-align="start center" flex>
+        <div flex>
+          <md-icon class="icon-primary -md-icon group-button">
+            account_circle
+          </md-icon>
+        </div>
+        <div class="text-large" flex>Login ou cadastro</div>
+      </div>
+    </div>
   </div>
 
+  <md-divider></md-divider>
+
   <div layout="row">
-    <div flex>
-      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+    <div class="result-search-short" flex-xs="10" flex>
+      <md-icon class="icon-primary -md-icon" style="color: #21ccaa">
         place
       </md-icon>
     </div>
-    <div flex>
+    <div class="airports-key-text result-search-short" flex-xs="15" flex>
       {{vm.getAirportCode(vm.departurePlace)}} - {{vm.getAirportCode(vm.returnPlace)}}
     </div>
-    <div flex>
-      <md-datepicker ng-model="vm.departureDate"
-                     md-placeholder="Data de ida"
-                     md-min-date="vm.minDate"
-                     ng-required="true"
-                     name="departureDate">
-      </md-datepicker>
-      <div ng-messages="vm.searchDataForm.departureDate.$error" ng-if="vm.searchDataForm.$submitted">
-        <div ng-message="required">Esse campo é obrigatório.</div>
+
+    <div layout="column" flex class="result-search-large">
+      <div class="text-large"><i>Sair de</i></div>
+      <div layout="row">
+        <div class="result-primary .-bold" flex>
+          {{vm.getCityName(vm.departurePlace)}}
+        </div>
+        <div layout="column" flex>
+          <div class="text-large -bold">{{vm.getAirportCode(vm.departurePlace)}}</div>
+          <div class="text-large">{{vm.getAirportName(vm.departurePlace)}}</div>
+        </div>
+        <div flex>
+          <md-icon class="icon-primary -md-icon" style="color: #21ccaa">
+            place
+          </md-icon>
+        </div>
       </div>
     </div>
-    <div flex>
-      <md-datepicker ng-model="vm.returnDate"
-                     md-placeholder="Data de ida *"
-                     md-min-date="vm.minDate"
-                     ng-required="true"
-                     name="returnDate">
-      </md-datepicker>
-      <div ng-messages="vm.searchDataForm.returnDate.$error" ng-if="vm.searchDataForm.$submitted">
-        <div ng-message="required">Esse campo é obrigatório.</div>
+
+    <div layout="column" flex class="result-search-large">
+      <div class="text-large"><i>Ir para</i></div>
+      <div layout="row">
+        <div class="result-primary .-bold" flex>
+          {{vm.getCityName(vm.returnPlace)}}
+        </div>
+        <div layout="column" flex>
+          <div class="text-large -bold">{{vm.getAirportCode(vm.returnPlace)}}</div>
+          <div class="text-large">{{vm.getAirportName(vm.returnPlace)}}</div>
+        </div>
+        <div flex>
+          <md-icon class="icon-primary -md-icon" style="color: #21ccaa">
+            place
+          </md-icon>
+        </div>
       </div>
     </div>
-    <div flex>
-      <md-menu-bar>
-        <md-menu>
-          <md-button class="md-grid-item-content" ng-click="$mdMenu.open()">
-            <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
-              group
-            </md-icon>
-          </md-button>
-          <md-menu-content>
-            <md-menu-item>
-              <md-menu>
-                <md-button ng-click="$mdMenu.open()">Adultos</md-button>
-                <md-menu-content>
-                  <md-menu-item ng-repeat="numberAdultsSelected in vm.numbersList">
-                    <md-button ng-click="vm.numberAdults = numberAdultsSelected">{{numberAdultsSelected}}</md-button>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
-            </md-menu-item>
 
-            <md-menu-item>
-              <md-menu>
-                <md-button ng-click="$mdMenu.open()">Crianças - 2 a 11 anos</md-button>
-                <md-menu-content>
-                  <md-menu-item ng-repeat="numberChildrenSelected in vm.numbersList">
-                    <md-button ng-click="vm.numberChildren = numberChildrenSelected">{{numberChildrenSelected}}</md-button>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
-            </md-menu-item>
+    <div layout="column" flex>
+      <div class="text-large result-search-large" flex>
+        <i>Ida</i>
+      </div>
+      <div layout="row" flex-xs="22" class="datepicker-large" flex>
+        <div class="result-primary .-bold result-search-large" flex>
+          {{vm.getDay(vm.departureDate)}}
+        </div>
+        <div class="result-search-large" layout="column" flex>
+          <div class="text-large -bold" flex>
+            {{vm.getMonth(vm.departureDate)}}
+          </div>
+          <div class="text-large" flex>
+            {{vm.getYear(vm.departureDate)}}
+          </div>
+        </div>
+        <div flex>
+          <md-datepicker ng-model="vm.departureDate"
+                         md-placeholder="Data de ida"
+                         md-min-date="vm.minDate"
+                         ng-required="true"
+                         name="departureDate"
+                         md-open-on-focus>
+          </md-datepicker>
+        </div>
+        <div ng-messages="vm.searchDataForm.departureDate.$error" ng-if="vm.searchDataForm.$submitted">
+          <div ng-message="required">Esse campo é obrigatório.</div>
+        </div>
+      </div>
+    </div>
 
-            <md-menu-item>
-              <md-menu>
-                <md-button ng-click="$mdMenu.open()">Bebês - 0 a 23 meses</md-button>
-                <md-menu-content>
-                  <md-menu-item ng-repeat="numberInfantsSelected in vm.numbersList">
-                    <md-button ng-click="vm.numberInfants = numberInfantsSelected">{{numberInfantsSelected}}</md-button>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-      </md-menu-bar>
+    <div layout="column" flex>
+      <div class="text-large result-search-large" flex>
+        <i>Volta</i>
+      </div>
+      <div layout="row" flex-xs="22" class="datepicker-large" flex>
+        <div class="result-primary .-bold result-search-large" flex>
+          {{vm.getDay(vm.returnDate)}}
+        </div>
+        <div class="result-search-large" layout="column" flex>
+          <div class="text-large -bold" flex>
+            {{vm.getMonth(vm.returnDate)}}
+          </div>
+          <div class="text-large" flex>
+            {{vm.getYear(vm.returnDate)}}
+          </div>
+        </div>
+        <div flex-xs="22" flex>
+          <md-datepicker ng-model="vm.returnDate"
+                         md-placeholder="Data de volta *"
+                         md-min-date="vm.minDate"
+                         ng-required="true"
+                         name="returnDate"
+                         md-open-on-focus>
+          </md-datepicker>
+        </div>
+        <div ng-messages="vm.searchDataForm.returnDate.$error" ng-if="vm.searchDataForm.$submitted">
+          <div ng-message="required">Esse campo é obrigatório.</div>
+        </div>
+      </div>
+    </div>
+
+    <div layout="column" flex-xs="10" flex>
+      <div class="text-large result-search-large" flex>
+        <i>Passageiros</i>
+      </div>
+      <div layout="row" flex>
+        <div class="result-primary .-bold result-search-large" flex>
+          {{vm.numberPassagers()}}
+        </div>
+        <div class="result-search-large" layout="column" flex>
+          <div class="text-large -bold" flex>
+            {{vm.numberPassagers() > 1 ? 'Passageiros' : 'Passageiro'}}
+          </div>
+          <div class="text-large class-large" flex>
+            {{vm.class}}
+          </div>
+        </div>
+        <div flex>
+          <md-menu-bar>
+            <md-menu>
+              <md-button class="md-grid-item-content" ng-click="$mdMenu.open()">
+                <md-icon class="icon-primary -md-icon group-button" style="color: #21ccaa">
+                  group
+                </md-icon>
+              </md-button>
+              <md-menu-content>
+                <md-menu-item>
+                  <md-menu>
+                    <md-button ng-click="$mdMenu.open()">Adultos</md-button>
+                    <md-menu-content>
+                      <md-menu-item ng-repeat="numberAdultsSelected in vm.numbersList">
+                        <md-button ng-click="vm.numberAdults = numberAdultsSelected">{{numberAdultsSelected}}</md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-menu>
+                    <md-button ng-click="$mdMenu.open()">Crianças - 2 a 11 anos</md-button>
+                    <md-menu-content>
+                      <md-menu-item ng-repeat="numberChildrenSelected in vm.numbersList">
+                        <md-button ng-click="vm.numberChildren = numberChildrenSelected">{{numberChildrenSelected}}</md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-menu>
+                    <md-button ng-click="$mdMenu.open()">Bebês - 0 a 23 meses</md-button>
+                    <md-menu-content>
+                      <md-menu-item ng-repeat="numberInfantsSelected in vm.numbersList">
+                        <md-button ng-click="vm.numberInfants = numberInfantsSelected">{{numberInfantsSelected}}</md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-menu>
+                    <md-button ng-click="$mdMenu.open()">Classe</md-button>
+                    <md-menu-content>
+                      <md-menu-item ng-repeat="economicClass in vm.classesList">
+                        <md-button ng-click="vm.class = economicClass">{{economicClass}}</md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </md-menu-bar>
+        </div>
+      </div>
+
       <div ng-messages="vm.searchDataForm.class.$error" ng-if="vm.searchDataForm.$submitted">
         <div ng-message="required">O campo classe é obrigatório.</div>
         <div ng-message="childrenError">A quantidade de crianças e bebês deve ser igual ou inferior ao número de adultos.</div>
         <div ng-message="numberPeople">No número de adultos tem que ser maior que zero.</div>
       </div>
     </div>
-    <div flex>{{vm.numberPassagers()}}</div>
+    <div class="number-passagers-short" flex>{{vm.numberPassagers()}}</div>
   </div>
+
+  <md-divider></md-divider>
 
   <div layout="row">
     <div flex>
@@ -120,6 +260,7 @@
         <div ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
       </div>
     </div>
+
     <div flex>
       <md-autocomplete
               md-selected-item="vm.returnPlace"
