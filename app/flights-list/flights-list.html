@@ -1,61 +1,83 @@
-<section>
-  <md-table-container>
-    <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-      <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-      <tr md-row>
-        <th md-column md-numeric>Cia Aérea</th>
-        <th md-column md-numeric>Partida</th>
-        <th md-column md-numeric>Duração</th>
-        <th md-column md-numeric>Chegada</th>
-      </tr>
-      </thead>
-      <tbody md-body>
-        <tr md-row md-select-id="name" md-auto-select ng-repeat="flightAirline in vm.flightsAirlinesList">
-          <td md-cell>
-            <div>{{flightAirline.airline}}</div>
-            <div>{{flightAirline.flightNumber}}</div>
-          </td>
-          <td md-cell>
-            <div>{{flightAirline.departureDate}}</div>
-            <div>{{flightAirline.from}}</div>
-          </td>
-          <td md-cell>{{flightAirline.duration}}</td>
-          <td md-cell>
-            <div>{{flightAirline.arrivalDate}}</div>
-            <div>{{flightAirline.to}}</div>
-          </td>
-          <td md-cell>
-            <div layout="row" layout-align="space-around center">
-              <div>
-                <md-menu-bar>
-                  <md-menu>
-                    <md-button class="md-grid-item-content" ng-click="$mdMenu.open()">
-                      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
-                        add
-                      </md-icon>
-                    </md-button>
-                    <md-menu-content>
-                      <div>{{flightAirline.details}}</div>
-                    </md-menu-content>
-                  </md-menu>
-                </md-menu-bar>
-              </div>
-              <div>Detalhes do vôo</div>
+<section id="_flights-list">
+  <div ng-cloak class="headline -bold" layout="row" layout-align="space-around center" flex="100">
+    <div class="header-text-table" flex-xs="25" flex>
+      Cia Aérea
+    </div>
+    <div class="header-text-table" flex-xs="25" flex>
+      Partida
+    </div>
+    <div class="header-text-table" flex-xs="25" flex>
+      Duração
+    </div>
+    <div class="header-text-table" flex-xs="25" flex>
+      Chegada
+    </div>
+    <div layout="column" ng-if="!vm.isMobile()">
+      <div class="header-text-table">
+        Detalhes
+      </div>
+      <div class="header-table-detail-large table-card">
+        VER QTD. MILHAS
+      </div>
+    </div>
+    <div layout="column" ng-if="!vm.isMobile()">
+      <div class="header-text-table">
+        Preço
+      </div>
+      <div class="header-table-detail-large table-card">
+        POR ADULTO (À INCLUIR TAXAS)
+      </div>
+    </div>
+  </div>
+
+  <md-content>
+    <md-list flex>
+      <md-list-item class="md-3-line" ng-repeat="flightAirline in vm.flightsAirlinesList">
+        <div class="md-list-item-text" layout="column">
+          <div layout="row" flex>
+            <div layout="column" layout-align="space-around center" flex-xs="25" flex>
+              <div class="text-large -bold">{{flightAirline.airline}}</div>
+              <div class="text-large">{{flightAirline.flightNumber}}</div>
             </div>
-          </td>
-          <td md-cell>
-            <div layout="column" layout-align="space-around center">
-              <!--TODO substituir strike por CSS-->
-              <div>{{flightAirline.airline}} <strike>{{flightAirline.economy | currency: 'R$'}}</strike></div>
-              <div>
-                <md-button>R$ {{flightAirline.price}}</md-button>
-              </div>
-              <div ng-if="flightAirline.bestPrice">Menor preço na companhia aérea</div>
-              <div ng-if="!flightAirline.bestPrice">Vôo exclusivo da MaxMilhas</div>
+            <div layout="column" layout-align="space-around center" flex-xs="25" flex>
+              <div class="text-large -bold">{{flightAirline.departureDate}}</div>
+              <div class="text-large text-place-large">{{flightAirline.from}}</div>
+
+              <div class="text-large text-place-short">{{flightAirline.fromCode}}</div>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </md-table-container>
+            <div layout="column" layout-align="space-around center" flex-xs="25" flex>
+              <div class="text-large -bold">{{flightAirline.duration}}</div>
+              <div class="text-large">VÔO DIRETO</div>
+            </div>
+            <div layout="column" layout-align="space-around center" flex-xs="25" flex>
+              <div class="text-large -bold">{{flightAirline.arrivalDate}}</div>
+              <div class="text-large text-place-large">{{flightAirline.to}}</div>
+
+              <div class="text-large text-place-short">{{flightAirline.toCode}}</div>
+            </div>
+
+            <div ng-if="!vm.isMobile()" flex>
+              <details-table-cell flight-airline="flightAirline"></details-table-cell>
+            </div>
+
+            <div ng-if="!vm.isMobile()" flex>
+              <price-table-cell flight-airline="flightAirline"></price-table-cell>
+            </div>
+          </div>
+
+          <md-divider></md-divider>
+
+          <div ng-if="vm.isMobile()">
+            <price-table-cell flight-airline="flightAirline"></price-table-cell>
+          </div>
+
+          <md-divider></md-divider>
+
+          <div ng-if="vm.isMobile()">
+            <details-table-cell flight-airline="flightAirline"></details-table-cell>
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
 </section>
