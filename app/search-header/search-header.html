@@ -119,7 +119,7 @@
           </md-datepicker>
         </div>
         <div ng-messages="vm.searchDataForm.departureDate.$error" ng-if="vm.searchDataForm.$submitted">
-          <div ng-message="required">Esse campo é obrigatório.</div>
+          <div class="error-message" ng-message="required">Esse campo é obrigatório.</div>
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@
           </md-datepicker>
         </div>
         <div ng-messages="vm.searchDataForm.returnDate.$error" ng-if="vm.searchDataForm.$submitted">
-          <div ng-message="required">Esse campo é obrigatório.</div>
+          <div class="error-message" ng-message="required">Esse campo é obrigatório.</div>
         </div>
       </div>
     </div>
@@ -230,12 +230,16 @@
       </div>
 
       <div ng-messages="vm.searchDataForm.class.$error" ng-if="vm.searchDataForm.$submitted">
-        <div ng-message="required">O campo classe é obrigatório.</div>
-        <div ng-message="childrenError">A quantidade de crianças e bebês deve ser igual ou inferior ao número de adultos.</div>
-        <div ng-message="numberPeople">No número de adultos tem que ser maior que zero.</div>
+        <div class="error-message" ng-message="required">O campo classe é obrigatório.</div>
+        <div class="error-message" ng-message="childrenError">A quantidade de crianças e bebês deve ser igual ou inferior ao número de adultos.</div>
+        <div class="error-message" ng-message="numberPeople">No número de adultos tem que ser maior que zero.</div>
       </div>
     </div>
     <div class="number-passagers-short" flex>{{vm.numberPassagers()}}</div>
+
+    <div class="search-button-large" layout-align="end center" flex="7">
+      <md-button class="primary" ng-disabled="vm.loading" type="submit">Pesquisar</md-button>
+    </div>
   </div>
 
   <md-divider></md-divider>
@@ -256,8 +260,8 @@
         </md-item-template>
       </md-autocomplete>
       <div ng-messages="vm.searchDataForm.departurePlace.$error" ng-if="vm.searchDataForm.$submitted">
-        <div ng-message="required">Esse campo é obrigatório.</div>
-        <div ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
+        <div class="error-message" ng-message="required">Esse campo é obrigatório.</div>
+        <div class="error-message" ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
       </div>
     </div>
 
@@ -276,14 +280,14 @@
         </md-item-template>
       </md-autocomplete>
       <div ng-messages="vm.searchDataForm.returnPlace.$error" ng-if="vm.searchDataForm.$submitted">
-        <div ng-message="required">Esse campo é obrigatório.</div>
-        <div ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
+        <div class="error-message" ng-message="required">Esse campo é obrigatório.</div>
+        <div class="error-message" ng-message="validationError">O local da ida e da volta não podem ser iguais</div>
       </div>
     </div>
   </div>
 
-  <div layout="row" layout-align="center center">
-    <md-button class="md-raised md-primary" ng-disabled="vm.loading" type="submit">Buscar</md-button>
+  <div class="search-button-short" layout="row" layout-align="center center">
+    <md-button class="primary" ng-disabled="vm.loading" type="submit">Pesquisar</md-button>
   </div>
 
   <div layout="row" layout-align="space-around" ng-show="vm.loading">

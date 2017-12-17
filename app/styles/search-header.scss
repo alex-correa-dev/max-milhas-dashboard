@@ -2,6 +2,12 @@ $primaryColor: #21ccaa;
 $borderScheduleColor: #f1b92d;
 $textDefaultColor: rgba(117, 117, 117, 0.87);
 
+.primary-buttons {
+  color : #ffffff;
+  background-color: $primaryColor;
+  font-size: 12px;
+}
+
 #_search_header {
   background-color: #ffffff;
   .-md-icon {
@@ -43,6 +49,24 @@ $textDefaultColor: rgba(117, 117, 117, 0.87);
 
   .highlight-text {
     font-weight: bold;
+  }
+
+  .search-button-large {
+    display: none;
+    > .primary {
+      @extend .primary-buttons
+    }
+  }
+
+  .search-button-short {
+    > .primary {
+      @extend .primary-buttons
+    }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 10px;
   }
 
   md-autocomplete input::-webkit-input-placeholder {
@@ -119,6 +143,14 @@ $textDefaultColor: rgba(117, 117, 117, 0.87);
 
     .class-large {
       font-size: 11px;
+    }
+
+    .search-button-large {
+      display: initial;
+    }
+
+    .search-button-short {
+      display: none;
     }
   }
 }
