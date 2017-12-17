@@ -1,0 +1,33 @@
+#_prices-alert {
+  background-color: #ffffff;
+
+  .prices-alert-large {
+    display: none;
+  }
+
+  .alert-button-large {
+    @extend .primary-buttons
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  #_prices-alert {
+    .prices-alert-short {
+      display: none;
+    }
+
+    .prices-alert-large {
+      display: initial;
+    }
+
+    .alert-text {
+      font-size: 14px;
+      color: $textDefaultColor;
+      text-align: center;
+
+      > .alert-highlight-text {
+        font-weight: bold;
+      }
+    }
+  }
+}
