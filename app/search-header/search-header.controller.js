@@ -1,11 +1,17 @@
 (function() {
   /* @ngInject */
-  function searchHeaderCtrl(airportsService, helpersService, $interval) {
+  function searchHeaderCtrl(
+    airportsService,
+    helpersService,
+    $interval,
+    $window
+  ) {
     const vm = this;
     const airportsNameCode = {};
     vm.loading = false;
     vm.numbersList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     vm.classesList = ['Classe Econômica', 'Classe Executiva'];
+    vm.class = 'Classe Econômica';
     vm.departurePlace = '';
     vm.returnPlace = '';
     vm.departureDate = null;
@@ -14,6 +20,21 @@
     vm.numberAdults = 0;
     vm.numberChildren = 0;
     vm.numberInfants = 0;
+    vm.isMobileSize = $window.innerWidth < 480;
+    const indexMonths = {
+      0: 'Janeiro',
+      1: 'Fevereiro',
+      2: 'Março',
+      3: 'Abril',
+      4: 'Maio',
+      5: 'Junho',
+      6: 'Julho',
+      7: 'Agosto',
+      8: 'Setembro',
+      9: 'Outubro',
+      10: 'Novembro',
+      11: 'Dezembro'
+    };
 
     function init() {
       return airportsService.getAirportsList().then((airports) => {
@@ -31,6 +52,19 @@
         return vm.airportsList;
       });
     }
+
+    vm.getCityName = place => place && place.split('-')[0];
+
+    vm.getAirportName = place => place && place.split('-')[1];
+
+    vm.getDay = dateFormated =>
+      dateFormated && new Date(dateFormated).getDate();
+
+    vm.getMonth = dateFormated =>
+      dateFormated && indexMonths[new Date(dateFormated).getMonth()];
+
+    vm.getYear = dateFormated =>
+      dateFormated && new Date(dateFormated).getFullYear();
 
     vm.numberPassagers = function() {
       return (
@@ -105,7 +139,12 @@
     init();
   }
 
-  searchHeaderCtrl.$inject = ['airportsService', 'helpersService', '$interval'];
+  searchHeaderCtrl.$inject = [
+    'airportsService',
+    'helpersService',
+    '$interval',
+    '$window'
+  ];
 
   angular
     .module('max-milhas-dashboard.search-header')
