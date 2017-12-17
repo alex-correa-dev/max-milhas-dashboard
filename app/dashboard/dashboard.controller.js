@@ -41,8 +41,9 @@
 
         flightsAirline.inbound.forEach((inboundData) => {
           const inbound = {};
-          const milesSaleTotal = inboundData.pricing.miles && inboundData.pricing.miles.saleTotal || 0;
-          const airlineSaleTotal = inboundData.pricing.airline && inboundData.pricing.airline.saleTotal || 0;
+          const milesSaleTotal = (inboundData.pricing.miles && inboundData.pricing.miles.saleTotal) || 0;
+          const airlineSaleTotal =
+            (inboundData.pricing.airline && inboundData.pricing.airline.saleTotal) || 0;
           inbound.airline = capitalizeFirstLetter(inboundData.airline);
           inbound.flightNumber = inboundData.flightNumber;
           inbound.departureDate = helpersService.getTimeFormated(inboundData.departureDate);
