@@ -1,0 +1,36 @@
+#_results-filter {
+  background-color: #ffffff;
+
+  .head-texts {
+    font-size: 12px;
+  }
+
+  .results-filter-large {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  #_results-filter {
+    .results-filter-short {
+      display: none;
+    }
+
+    .results-filter-large {
+      display: initial;
+    }
+
+    .elements {
+      margin-left: 10px;
+    }
+
+    .results-filter-headline {
+      text-align: center;
+      padding-top: 9px;
+    }
+
+    md-checkbox.md-checked.results-filter-checkbox .md-icon {
+      background-color: $primaryColor;
+    }
+  }
+}
