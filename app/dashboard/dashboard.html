@@ -1,6 +1,20 @@
-<section class="container" layout-xs="column" layout-align-xs="start center">
-  <search-header min-date="vm.minDate" get-flights-airlines-list="vm.getFlightsAirlinesList" airports="vm.airports"></search-header>
-  <prices-alert></prices-alert>
-  <results-filter></results-filter>
-  <flights-list flights-airlines-list="vm.flightsAirlinesList"></flights-list>
+<section class="container" layout-xs="column" layout-align-xs="start center" flex>
+  <div flex>
+    <search-header min-date="vm.minDate" get-flights-airlines-list="vm.getFlightsAirlinesList" airports="vm.airports"></search-header>
+  </div>
+  <div layout-xs="column" layout="row" flex>
+    <div layout="column" flex="25" flex-xs="100">
+      <div flex>
+        <prices-alert></prices-alert>
+      </div>
+
+      <div flex>
+        <results-filter></results-filter>
+      </div>
+    </div>
+
+    <div flex>
+      <flights-list flights-airlines-list="vm.flightsAirlinesList"></flights-list>
+    </div>
+  </div>
 </section>
