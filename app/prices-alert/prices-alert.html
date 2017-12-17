@@ -1,10 +1,39 @@
-<section>
-  <div layout="row" layout-align="space-around center">
-    <div>Crie um alerta de preço para essa busca</div>
+<section id="_prices-alert">
+  <div class="prices-alert-short" layout="row" layout-align="space-around center">
+    <div class="highlight-text">Crie um alerta de preço para essa busca</div>
     <div>
-      <md-icon ng-style="{ color: '#777', 'font-size': '36px', height: '36px' }">
+      <md-icon class="icon-primary" style="color: #21ccaa">
         notifications_active
       </md-icon>
+    </div>
+  </div>
+
+  <div layout="column" class="prices-alert-large" flex>
+    <div class="headline -bold" layout="row" layout-align="space-around center">
+      <div>
+        Alerta de preço
+      </div>
+      <div>
+        <md-icon style="color: #ffffff">
+          notifications_active
+        </md-icon>
+      </div>
+    </div>
+
+    <div class="alert-text" flex>
+      <span class="alert-highlight-text">Crie um alerta de preço de Belo Horizonte para Florianópolis.</span> Quando o vôo estiver no preço cadastrado,
+      enviaremos um e-mail e você economiza ainda mais.
+    </div>
+
+    <div flex>
+      <div layout="row" layout-align="center center">
+        <md-button class="alert-button-large">
+          <md-icon class="icon-primary" style="color: #ffffff">
+            trending_flat
+          </md-icon>
+          Criar alerta agora
+        </md-button>
+      </div>
     </div>
   </div>
 </section>
