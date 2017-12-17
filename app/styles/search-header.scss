@@ -1,0 +1,130 @@
+$primaryColor: #21ccaa;
+$borderScheduleColor: #f1b92d;
+$textDefaultColor: rgba(117, 117, 117, 0.87);
+
+#_search_header {
+  background-color: #ffffff;
+  .-md-icon {
+    font-size: 24px;
+    height: 24px;
+  }
+
+  .airports-key-text {
+    font-size: 10px;
+  }
+
+  .md-datepicker-button {
+    display: none;
+  }
+
+  .md-datepicker-triangle-button {
+    display: none;
+  }
+
+  .md-datepicker-input-container {
+    margin-left: 0;
+  }
+
+  .md-datepicker-input-container {
+    width: 80px;
+  }
+
+  .group-button {
+    margin-bottom: 16px;
+  }
+
+  .number-passagers-short {
+    margin-top: 7px;
+  }
+
+  .result-search-large {
+    display: none;
+  }
+
+  .highlight-text {
+    font-weight: bold;
+  }
+
+  md-autocomplete input::-webkit-input-placeholder {
+    font-weight: bold;
+  }
+  md-autocomplete input:-moz-placeholder { /* Firefox 18- */
+    font-weight: bold;
+  }
+
+  md-autocomplete input::-moz-placeholder {  /* Firefox 19+ */
+    font-weight: bold;
+  }
+
+  md-autocomplete input:-ms-input-placeholder {
+    font-weight: bold;
+  }
+}
+
+.icon-primary {
+  color: $primaryColor;
+}
+
+.schedule-card {
+  border: 1px solid $borderScheduleColor;
+}
+
+@media only screen and (min-width: 480px) {
+  .schedule-card {
+    display: none;
+  }
+
+  #_search_header {
+    .md-datepicker-button {
+      display: initial;
+    }
+
+    .md-datepicker-triangle-button {
+      display: initial;
+    }
+
+    .md-datepicker-input-container {
+      display: none;
+    }
+
+    .result-search-short {
+      display: none;
+    }
+
+    .result-search-large {
+      display: initial;
+    }
+
+    .text-large {
+      font-size: 14px;
+      color: $textDefaultColor;
+    }
+
+    .result-primary {
+      font-size: 18px;
+      color: $primaryColor;
+    }
+
+    .-bold {
+      font-weight: bold;
+    }
+
+    .datepicker-large {
+      padding-bottom: 10px;
+    }
+
+    .number-passagers-short {
+      display: none;
+    }
+
+    .class-large {
+      font-size: 11px;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .menu-cards {
+    display: none;
+  }
+}
