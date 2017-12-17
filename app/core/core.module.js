@@ -4,7 +4,6 @@
     'ui.router',
     'ngMaterial',
     'ngMessages',
-    'md.data.table',
 
     'blocks.logger',
     'blocks.router',
