@@ -33,3 +33,7 @@ $borderHeaderColor: rgba(117, 117, 117, 0.87);
   font-size: 14px;
   color: $textDefaultColor;
 }
+
+.-line-through {
+  text-decoration: line-through;
+}
