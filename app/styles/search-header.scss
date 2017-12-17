@@ -1,13 +1,3 @@
-$primaryColor: #21ccaa;
-$borderScheduleColor: #f1b92d;
-$textDefaultColor: rgba(117, 117, 117, 0.87);
-
-.primary-buttons {
-  color : #ffffff;
-  background-color: $primaryColor;
-  font-size: 12px;
-}
-
 #_search_header {
   background-color: #ffffff;
   .-md-icon {
@@ -47,10 +37,6 @@ $textDefaultColor: rgba(117, 117, 117, 0.87);
     display: none;
   }
 
-  .highlight-text {
-    font-weight: bold;
-  }
-
   .search-button-large {
     display: none;
     > .primary {
@@ -83,10 +69,6 @@ $textDefaultColor: rgba(117, 117, 117, 0.87);
   md-autocomplete input:-ms-input-placeholder {
     font-weight: bold;
   }
-}
-
-.icon-primary {
-  color: $primaryColor;
 }
 
 .schedule-card {
@@ -127,10 +109,6 @@ $textDefaultColor: rgba(117, 117, 117, 0.87);
     .result-primary {
       font-size: 18px;
       color: $primaryColor;
-    }
-
-    .-bold {
-      font-weight: bold;
     }
 
     .datepicker-large {
