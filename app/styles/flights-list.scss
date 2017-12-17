@@ -1,0 +1,38 @@
+#_flights-list {
+  .header-text-table {
+    color: #ffffff;
+  }
+
+  .text-place-large {
+    display: none;
+  }
+
+  .text-price-description {
+    font-size: 10px;
+    color: $textDefaultColor;
+  }
+
+  .price-button {
+    > .primary {
+      @extend .primary-buttons
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .text-place-large {
+    display: initial;
+  }
+
+  .text-place-short {
+    display: none;
+  }
+
+  .header-table-detail-large {
+    font-size: 10px;
+  }
+
+  .table-card {
+    border: 1px solid #ffffff;
+  }
+}
