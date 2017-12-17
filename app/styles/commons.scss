@@ -1,0 +1,29 @@
+$primaryColor: #21ccaa;
+$borderScheduleColor: #f1b92d;
+$textDefaultColor: rgba(117, 117, 117, 0.87);
+$borderHeaderColor: rgba(117, 117, 117, 0.87);
+
+.icon-primary {
+  color: $primaryColor;
+}
+
+.highlight-text {
+  font-weight: bold;
+  color: #879395;
+}
+
+.primary-buttons {
+  color : #ffffff;
+  background-color: $primaryColor;
+  font-size: 12px;
+}
+
+.headline {
+  background-color: $borderHeaderColor;
+  color : #ffffff;
+  font-size: 14px;
+}
+
+.-bold {
+  font-weight: bold;
+}
