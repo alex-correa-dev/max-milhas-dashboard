@@ -5,3 +5,4 @@ bower_components/
 report/
 .tmp/
 .dist/
+npm-debug.log
