@@ -67,21 +67,10 @@ Independente do modo escolhido, no browser executamos:
 localhost:7070
 ```
 
-## Decisões de implementação
+Destacamos que usamos o _Angular Material_ que é a adaptação do _Material Design_ para _AngularJS_ por ser um material bastante usado por usuários.
 
-A intenção inicial é fazer a página de dashboard com todas as funcionalidades possíveis, feitas em mobile first seguida por desktop. Entretanto,
-a quantidade de funcionalidades para implementar foi muito grande e algumas decisões foram tomadas com o objetivo a entregar o melhor possível
-dentro do tempo estabelecido. Para tanto, fizemos:
+Usamos o _EcmaScript 6_ pela facilidade de escrever _Javascript_ com ele pelas evoluções apresentadas.
 
-- A arquitetura formada por componentes;
-- Testes unitários e funcionais;
-- A maior parte da tela feita com _Angular Material_ que é a adaptação do _Material Design_ para _AngularJS_;
-- Utilização do _EcmaScript 6_.
+Os testes funcionais e unitários foram feitos usando _Jasmine_ por ser um framework bem usado pela comunidade.
 
-Mas é necessário reconhecer que faltaram alguns itens:
-
-- Estilização usando _SASS_ e usar [RSCSS](http://rscss.io) como padrão arquitetural de desenvolvimento;
-- Interação do usuário na interface com reflexo nas apis;
-- Definição da tela usando mobile first, seguido por desktop;
-- Melhoria da cobertura de testes unitários e funcionais;
-- Refatoração de algumas funções que estão extensas;
+Utilizamos o _SASS_ como pré-processador _CSS_ e o [RSCSS](http://rscss.io) como padrão arquitetural de desenvolvimento.
